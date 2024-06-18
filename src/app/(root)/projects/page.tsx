@@ -54,11 +54,11 @@ useEffect(() => {
     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
   </div>
   <div className="flex justify-around mb-3" >
-    <Link href={item?.liveLink}>
+    <Link href={item?.liveLink} target="_blank">
     
      <Button>Preview</Button>
     </Link>
-    <Link href={item?.githubLink}>
+    <Link href={item?.githubLink} target="_blank">
     
   <Button>Github</Button>
     </Link>

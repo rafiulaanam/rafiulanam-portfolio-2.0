@@ -1,4 +1,5 @@
-import anamHome from "../../public/anam1.png";
+import anamHome from "../../public/anamHome.png";
+import anamHomeAbout from "../../public/anamAbout.png";
 import anamAbout from "../../public/anam2.png";
 import topGradient from "../../public/topGradient.svg";
 import footerGradient from "../../public/footerGradient.svg";
@@ -8,6 +9,7 @@ import coverImage from "../../public/carCover.png";
 
 export {
   anamHome,
+  anamHomeAbout,
   anamAbout,
   topGradient,
   footerGradient,

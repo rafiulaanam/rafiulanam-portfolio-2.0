@@ -27,7 +27,7 @@ export default function Hero() {
       </Link>
     </div>
       </div>
-      <div className="  sm:w-[300px] sm:h-[350px] lg:w-[400px] lg:h-[450px] rounded-b-[20%]  ">
+      <div className="hidden md:flex  sm:w-[300px] sm:h-[350px] lg:w-[400px] lg:h-[450px] rounded-b-[20%]  ">
         <Image
           src={anamHome}
           alt="rafiulaanam"

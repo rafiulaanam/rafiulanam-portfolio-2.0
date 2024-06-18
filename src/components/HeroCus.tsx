@@ -1,28 +1,37 @@
 import { anamHome } from "@/assets";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroCus() {
   return (
     <>
       {/* Hero */}
-      <div className="container ">
+      <div className="container mt-10">
         {/* Grid */}
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
           <div>
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              CloudMaster: Elevate Your Projects
+            <span className="text-primary-500">I&apos;m</span> Rafiul Anam
             </h1>
             <p className="mt-3 text-xl text-muted-foreground">
-              Simplify team collaboration with CloudMaster, the ultimate tool
-              for efficient project management.
+            As a full-stack web developer, I assist emerging businesses in achieving their digital aspirations. I specialize in developing modern web applications.
             </p>
             {/* Buttons */}
             <div className="mt-7 grid gap-3 w-full sm:inline-flex">
-              <Button size={"lg"}>Get started</Button>
-              <Button variant={"outline"} size={"lg"}>
-                Contact sales team
+
+            <Link href="/contact">
+               <Button size={"lg"}>
+        Get in Touch
+      </Button>
+            </Link>
+         
+      <Link href="https://drive.google.com/file/d/16h2H6GstJZQKoIB-qlpos3574Qszj1rd/view?usp=sharing">
+      <Button variant={"outline"} size={"lg"}>
+                Download Resume
               </Button>
+      </Link>
+              
             </div>
             {/* End Buttons */}
             <div className="mt-6 lg:mt-10 grid grid-cols-2 gap-x-5">
@@ -127,15 +136,25 @@ export default function HeroCus() {
             </div>
           </div>
           {/* Col */}
-          <div className="relative ms-4">
-            <Image 
-            width={300}
-            height={300}
-              className="w-full rounded-md"
-              src={anamHome}
-              alt="Image Description"
-            />
-          </div>
+          {/* <div className=" ms-4 ring ring-primary ring-offset-base-100 ring-offset-2  sm:w-[300px] sm:h-[350px] lg:w-[450px] lg:h-[500px]">
+          <Image
+          src={anamHome}
+          alt="rafiulaanam"
+          quality={100}
+          className="w-full h-full object-cover rounded-b-[20%]"
+        />
+          </div> */}
+          <div className="flex flex-wrap justify-center  ">
+  <div className="w-10/12 ">
+    {/* <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" alt="..." className="shadow-lg rounded-full max-w-full h-auto align-middle border-none" /> */}
+    <Image
+          src={anamHome}
+          alt="rafiulaanam"
+          quality={100}
+         className="shadow-lg ring ring-primary ring-offset-base-100 ring-offset-2 rounded-full max-w-full h-auto align-middle border-none"
+        />
+  </div>
+</div>
           {/* End Col */}
         </div>
         {/* End Grid */}
