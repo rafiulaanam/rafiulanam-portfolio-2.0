@@ -2,10 +2,8 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import authReducer from '../redux/features/auth/authSlice';
 import projectReducer from './features/project/projectSlice';
 import paginationReducer from '../redux/features/pagination/paginationSlice';
-import themeReducer from '../redux/features/theme/themeSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import { baseApi } from './api/baseApi';
-import soldReducer from './features/sell/sellSlice';
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 const createNoopStorage = () => {
@@ -30,10 +28,8 @@ const storage =
 const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
   auth: authReducer,
-  theme: themeReducer,
   project:projectReducer,
   pagination:paginationReducer,
-  soldHistory: soldReducer
 });
 
 const persistConfig = {

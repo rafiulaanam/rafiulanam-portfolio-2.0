@@ -8,6 +8,11 @@ export async function middleware(req: NextRequest) {
     req.cookies.get("next-auth.session-token")?.value ??
     req.cookies.get("__Secure-next-auth.session-token")?.value;
 
+  // If the user has an authToken and tries to access the login page, redirect to /dashboard
+  if (authToken && pathname === "/login") {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
   // Check if the request is for the dashboard or any subpath of the dashboard
   if (pathname.startsWith("/dashboard")) {
     if (!authToken) {
@@ -28,15 +33,11 @@ export async function middleware(req: NextRequest) {
         }
       );
     }
-  } else {
-    if (pathname === "/login") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/api/project/:path*", "/api/auth/:path*"],
+  matcher: ["/dashboard/:path*", "/api/project/:path*", "/api/auth/:path*", "/login"],
 };

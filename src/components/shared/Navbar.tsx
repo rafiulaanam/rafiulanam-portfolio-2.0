@@ -5,16 +5,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 import { ThemeToggle } from "@/components/Theme/ThemeToggle";
-import { Drop } from "../Drop";
 import { navLinks } from "../../utils/navLinks";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 export default function Navbar() {
 
 
 
   return (
     <>
-      <header className="sticky backdrop-blur-md top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+      <header className="sticky z-20 backdrop-blur-md top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link
             href="/"

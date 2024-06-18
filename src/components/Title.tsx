@@ -5,7 +5,7 @@ import React from "react";
 const Title = ({ title, myTitle }:{title:string, myTitle:string}) => {
   return (
     <h1
-      className="relative
+      className="relative z-10
          lg:text-9xl md:text-9xl text-7xl text-center font-bold text-[rgba(0,0,0,0.41)]  dark:text-[rgba(238,238,238,0.08)] uppercase"
     >
       {title}
