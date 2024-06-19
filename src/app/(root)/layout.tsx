@@ -1,23 +1,21 @@
-import { Metadata } from "next";
-import Navbar from "../../components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import Navbar from "@/components/shared/Navbar";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | Rafiul Anam",
-  description: "This is the Home page of Rafiul Anam",
+  title: "Home | Anam - Full Stack Developer",
 };
-export default function RootLayout({
+
+export default function HomeLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className="bgp">
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <main className="bgp">
+      <Navbar />
+      {children}
+      <Footer />
+    </main>
   );
 }
