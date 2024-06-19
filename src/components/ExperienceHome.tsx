@@ -12,8 +12,8 @@ export default function ExperienceHome() {
               <div className="grid gap-4 rounded-lg border bg-white p-6 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xl font-bold">Senior Software Engineer</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Acme Inc.</p>
+                    <h3 className="text-xl font-bold">DevWave Programmer</h3>
+                    <p className="text-gray-500 dark:text-gray-400">Full-stack Developer - Freelancer</p>
                   </div>
                   <p className="text-sm font-medium text-gray-500 dark:text-gray-400">2020 - Present</p>
                 </div>
@@ -26,8 +26,8 @@ export default function ExperienceHome() {
               <div className="grid gap-4 rounded-lg border bg-white p-6 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xl font-bold">Frontend Developer</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Acme Corp.</p>
+                    <h3 className="text-xl font-bold">Webtricker</h3>
+                    <p className="text-gray-500 dark:text-gray-400">Full-stack Developer - Internship</p>
                   </div>
                   <p className="text-sm font-medium text-gray-500 dark:text-gray-400">2018 - 2020</p>
                 </div>
@@ -39,8 +39,8 @@ export default function ExperienceHome() {
               <div className="grid gap-4 rounded-lg border bg-white p-6 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xl font-bold">Intern</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Acme Labs</p>
+                    <h3 className="text-xl font-bold">HILLBORN TECHNOLOGIES PRIVATE LIMITED</h3>
+                    <p className="text-gray-500 dark:text-gray-400">Full-stack Developer - Internship</p>
                   </div>
                   <p className="text-sm font-medium text-gray-500 dark:text-gray-400">2017 - 2018</p>
                 </div>

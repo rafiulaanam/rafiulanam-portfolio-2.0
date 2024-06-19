@@ -6,6 +6,9 @@ import footerGradient from "../../public/footerGradient.svg";
 import uploadImage from "../../public/uploadImage.png";
 import uploadImage2 from "../../public/fullImage.png";
 import coverImage from "../../public/carCover.png";
+import scolarshome from "../../public/scholarshome.jpg";
+import sylhetGovt from "../../public/sylhetgovt.jpg";
+import phHero from "../../public/ph.png";
 
 export {
   anamHome,
@@ -16,4 +19,7 @@ export {
   uploadImage,
   uploadImage2,
   coverImage,
+  scolarshome,
+  sylhetGovt,
+  phHero
 };

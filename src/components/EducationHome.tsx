@@ -8,16 +8,16 @@ export default function EducationHome() {
       <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">My Education</h2>
           <p className="mt-4 text-gray-500 dark:text-gray-400">
-            Learn about my academic background and qualifications.
+          A summary of my academic background and qualifications.
           </p>
         </div>
-        <div className="container grid items-center justify-center gap-8 px-4 md:px-6">
+        <div className="container grid items-center justify-center mt-5 gap-8 px-4 md:px-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {
                 education.map(item=><div key={item.id} className="rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950 dark:text-gray-50">
               <div className="space-y-2">
                 <Image
-                  src={coverImage}
+                  src={item.img}
                   alt={item.degree}
                   width={300}
                   height={200}
