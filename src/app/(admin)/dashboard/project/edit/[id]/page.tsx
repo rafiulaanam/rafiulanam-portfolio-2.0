@@ -48,6 +48,7 @@ import { CloudImage } from '@/components/CloudImage'
 import { useRouter } from 'next/navigation'
 import { useGetProByIdQuery, useUpdateProMutation } from '@/redux/features/project/projectApi'
 import { useAppDispatch } from '@/redux/hooks'
+import Loading from '@/components/Loading'
 const CustomEditor = dynamic(()=>import('@/components/CustomEditor'),{ssr:false})
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -72,7 +73,8 @@ const formSchema = z.object({
 
 export default function EditProduct({ params }: { params: { id: string } }) {
  const productId = params.id
-  const {data: reduxProject}:any = useGetProByIdQuery(productId)
+  const {data: reduxProject, isLoading}:any = useGetProByIdQuery(productId)
+  
   const [updatePro,result] = useUpdateProMutation()
   const router = useRouter()
   const { toast } = useToast()
@@ -99,7 +101,7 @@ export default function EditProduct({ params }: { params: { id: string } }) {
       }
     };
     fetchProjects()
-  }, []);
+  }, [reduxProject]);
 
   // 1. Define your form.
  
@@ -159,6 +161,9 @@ const img2 = await submitImage(image2)
 router.push("/dashboard/project")
    
   }
+
+if(isLoading){return <Loading loadingText='Loading'/>}
+
   return (
     
     <Form {...form}>

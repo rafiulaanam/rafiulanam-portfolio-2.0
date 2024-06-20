@@ -32,13 +32,21 @@ const Footer = () => {
         <div className="flex justify-between gap-2">
           <div className="hidden sm:block">
             {/* logo */}
-            <Button
-            
-              title="rafiulaanam"
-              className={`!text-3xl  !p-0 !font-bold`}
-            >
-              {"<Anam/>"}
-            </Button>
+            <Link
+            href="/"
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+          >
+          
+            <h1
+        
+        title="Anam"
+        className="!text-3xl !font-bold"
+      >
+        {"<Anam/>"}
+      </h1>
+            <span className="sr-only">Anam</span>
+         
+          </Link>
           </div>
           {/* footer links */}
           <div className="flex justify-between flex-col sm:flex-row gap-4 sm:gap-20 mr-4">

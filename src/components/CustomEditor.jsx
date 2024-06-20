@@ -39,11 +39,11 @@ const CustomEditor = (props) => {
 
 /////////////////////////////////////////////////////////////////////////
     useEffect(() => {
-        if (!isInstance.current) {
+        if (!isInstance?.current) {
           initEditor();
     }
         return () => {
-            if(isInstance.current){
+            if(isInstance?.current){
              isInstance.current.destroy()
              isInstance.current = null;
             }

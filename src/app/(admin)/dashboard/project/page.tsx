@@ -48,33 +48,18 @@ import { useEffect } from "react";
 import { getProjectSuccess } from "@/redux/features/project/projectSlice";
 import { useDeleteProMutation, useGetProItemsQuery } from "@/redux/features/project/projectApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import Loading from "@/components/Loading";
 
 
 export default function Project() {
   const [deletePro] = useDeleteProMutation();
   
   const { data: getProjectsFromDB, isLoading } = useGetProItemsQuery(undefined);
-  const dispatch = useAppDispatch()
-const { currentProject } = useAppSelector((state) => state.project);
 
-useEffect(() => {
-  const fetchProjects = async () => {
-    try {
-      if (getProjectsFromDB) {
-        dispatch(getProjectSuccess(getProjectsFromDB));
-      } else {
-        dispatch(getProjectSuccess(null));
-      }
-    } catch (error) {
-      throw new Error("Projects not fetched");
-    }
-  };
-  fetchProjects();
-}, [getProjectsFromDB]);
 
   return (
 <section>
-{ !currentProject?.length ?
+{ !getProjectsFromDB?.length ?
    
     <main className="flex flex-1 flex-col  gap-4 p-4 lg:gap-6 lg:p-6">
           <div className="flex items-center">
@@ -180,10 +165,11 @@ useEffect(() => {
                       </TableRow>
                     </TableHeader>
                    
-                    
+                    { isLoading ? <Loading loadingText="Loading"/>
+                    :
                     <TableBody>
                     {
-                      currentProject?.map((item:any, i:any)=><TableRow key={i}>
+                      getProjectsFromDB?.map((item:any, i:any)=><TableRow key={i}>
                       <TableCell className="hidden sm:table-cell">
                         <Image
                           alt="Product image"
@@ -271,7 +257,7 @@ useEffect(() => {
                     
                    
                   </TableBody>
-                   
+                   }
                   </Table>
                 </CardContent>
                 <CardFooter>

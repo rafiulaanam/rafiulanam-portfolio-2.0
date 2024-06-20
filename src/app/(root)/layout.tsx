@@ -3,7 +3,7 @@ import Navbar from "@/components/shared/Navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | Anam - Full Stack Developer",
+  title: "Anam Developer - Full Stack Developer",
 };
 
 export default function HomeLayout({

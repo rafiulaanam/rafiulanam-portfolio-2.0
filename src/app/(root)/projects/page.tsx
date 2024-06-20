@@ -1,4 +1,5 @@
 "use client"
+import Loading from "@/components/Loading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,31 +20,17 @@ export default function Projects() {
 
 
   const { data: getProjectsFromDB, isLoading } = useGetProItemsQuery(undefined);
-  const dispatch = useAppDispatch()
-const { currentProject } = useAppSelector((state) => state.project);
-const [query, setQuery] = useState('');
-useEffect(() => {
-  const fetchProjects = async () => {
-    try {
-      if (getProjectsFromDB) {
-        dispatch(getProjectSuccess(getProjectsFromDB));
-      } else {
-        dispatch(getProjectSuccess(null));
-      }
-    } catch (error) {
-      throw new Error("Projects not fetched");
-    }
-  };
-  fetchProjects();
-}, [getProjectsFromDB]);
 
 
-// console.log(query)
 
+
+
+ 
+  const [query, setQuery] = useState('');
 const search =(data:any)=>{
-  return data.filter((item:TProject)=>item.title.toLowerCase().includes(query) || item.category.toLowerCase().includes(query))
+  return data?.filter((item:TProject)=>item.title.toLowerCase().includes(query) || item.category.toLowerCase().includes(query) ||  item?.techUsed.some((tech) => tech.label.toLowerCase().includes(query.toLowerCase())))
 }
-const projects = search(currentProject)
+const projects = search(getProjectsFromDB)
   return (
   <>
   {/* search section */}
@@ -132,50 +119,57 @@ const projects = search(currentProject)
               {/* End SVG Element */}
             </div>
             <div className="mt-10 sm:mt-20 flex flex-wrap gap-2 justify-center">
-              <Button variant={"outline"}>
+              <Button variant={"outline"}  onClick={(e)=>setQuery("next.js")}>
                 <BriefcaseIcon className="flex-shrink-0 w-3 h-auto mr-2" />
-                Business
+                Next js
               </Button>
-              <Button variant={"outline"}>
+              <Button variant={"outline"}  onClick={(e)=>setQuery("react")}>
                 <SettingsIcon className="flex-shrink-0 w-3 h-auto mr-2" />
-                Strategy
+                React Js
               </Button>
               <Button variant={"outline"}>
                 <HeartIcon className="flex-shrink-0 w-3 h-auto mr-2" />
-                Health
+                HTML/CSS
               </Button>
               <Button variant={"outline"}>
                 <LightbulbIcon className="flex-shrink-0 w-3 h-auto mr-2" />
-                Creative
+                Tailwind CSS
               </Button>
               <Button variant={"outline"}>
                 <FlowerIcon className="flex-shrink-0 w-3 h-auto mr-2" />
-                Environment
+                SaaS
               </Button>
               <Button variant={"outline"}>
                 <MountainSnow className="flex-shrink-0 w-3 h-auto mr-2" />
-                Adventure
+                FullStack
               </Button>
             </div>
           </div>
         </div>
       </div>
       {/* Projects section */}
+      {
+isLoading ? <Loading loadingText="Loading"/>
+:    
   <div className="flex justify-center">
      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
     {
-      projects?.map((item:TProject)=><div key={item._id} className="max-w-sm rounded overflow-hidden shadow-lg">
+      projects?.map((item:TProject)=><div key={item._id} className="max-w-sm rounded overflow-hidden shadow-lg border dark:border-gray-500">
   <Image width={300} height={300} className="w-full" src={item?.coverImage} alt="Sunset in the mountains"/>
   <div className="px-6 py-4">
     <div className="font-bold text-xl mb-2">{item?.title}</div>
-    <p className="text-gray-700 text-base">
+    <p className=" text-base">
       {item?.overview}
     </p>
   </div>
   <div className="px-6 pt-4 pb-2">
-    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+  {
+                    
+                    item.techUsed?.map((tech,i)=><span key={i} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{tech?.label}</span>
+                    )
+                  }
+    
+   
   </div>
   <div className="flex justify-around mb-3" >
     <Link href={item?.liveLink} target="_blank">
@@ -196,7 +190,8 @@ const projects = search(currentProject)
     }
 
    </div>
-  </div>
+  </div> 
+  }
   </>
   );
 }
