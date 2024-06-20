@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import Loading from "./Loading";
 
 export default function ProjectHome() {
-  const { data: getProjectsFromDB, isLoading } = useGetProItemsQuery(undefined);
   // const dispatch = useAppDispatch();
   // const { currentProject } = useAppSelector((state) => state.project);
 
@@ -31,7 +30,8 @@ export default function ProjectHome() {
   //   };
   //   fetchProjects();
   // }, [getProjectsFromDB]);
-
+  
+  const { data: getProjectsFromDB, isLoading } = useGetProItemsQuery(undefined);
   const currentProject = getProjectsFromDB?.slice(0, 3);
 
   return (
@@ -84,7 +84,7 @@ export default function ProjectHome() {
       }
       <div className="flex justify-center my-10 items-center">
         <Link href={"/projects"}>
-          <Button>See All Projects</Button>
+          <Button>See More Projects</Button>
         </Link>
       </div>
     </div>

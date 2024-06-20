@@ -48,23 +48,13 @@ import TechUsed, { Tag } from '@/components/TechUsed'
 import { CloudImage } from '@/components/CloudImage'
 import { useRouter } from 'next/navigation'
 import { useCreateProMutation } from '@/redux/features/project/projectApi'
+import { useCreateBlogMutation } from '@/redux/features/blog/blogApi'
 const CustomEditor = dynamic(()=>import('@/components/CustomEditor'),{ssr:false})
 const formSchema = z.object({
   title: z.string().min(2, {
     message: "Title must be at least 2 characters.",
   }),
-  overview: z.string().min(10, {
-    message: "Overview must be at least 10 characters.",
-  }),
-  videoLink: z.string().min(10, {
-    message: "Youtube Video must be at least 10 characters.",
-  }),
-  liveLink: z.string().min(10, {
-    message: "Preview Link must be at least 10 characters.",
-  }),
-  githubLink: z.string().min(10, {
-    message: "Github Link must be at least 10 characters.",
-  }),
+
  
   category: z.string(),
  
@@ -75,19 +65,16 @@ export default function NewProject() {
   const { toast } = useToast()
   const [content,setContent] = useState('')
   const [techUsed, setTechUsed] = useState<Tag[]>([]);
-  const [createPro,result] = useCreateProMutation()
   const [image1, setImage1] =useState<File | null>(null);
   const [image2, setImage2] = useState<File | null>(null);
+  
+  const [createBlog, {data:result}] = useCreateBlogMutation();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      overview: "",
-      videoLink: "",
-      liveLink: "",
-      githubLink: "",
-      category: "",
+      title: ""
+     
       
     },  
   });
@@ -116,34 +103,20 @@ const submitImage = async (file:any) =>{
 const img1 = await submitImage(image1)
 const img2 = await submitImage(image2)
       const data = {
-        ...values,
+        title:values?.title,
         description:content,
-        coverImage:img1,
-        fullPageImage:img2,
-        techUsed,
+        coverImage:img1
 
       }
 
       
-      await createPro(data)
-      // useEffect(() => {
-      //   const fetchProjects = async () => {
-      //     try {
-      //       if(reduxProject){
-    
-      //         // setProjectData(reduxProject)
-      //         setContent(reduxProject.description)
-      //         setTechUsed(reduxProject.techUsed)
-      //       }else{
-      //         // setProjectData(null)
-      //       }
-      //     } catch (error) {
-      //       throw new Error("Projects not fetched")
-      //     }
-      //   };
-      //   fetchProjects()
-      // }, []);
-
+      await createBlog(data).then(()=>{
+        toast({
+          description: "Blog successfully created.",
+        })
+    router.push("/dashboard/blog")
+      })
+      
     if (!result ) {
       toast({
         variant: "destructive",
@@ -153,10 +126,7 @@ const img2 = await submitImage(image2)
       })
       throw new Error("Failed to send mail");
     }
-    toast({
-      description: "Project successfully created.",
-    })
-router.push("/dashboard/project")
+   
    
   }
   return (
@@ -214,23 +184,7 @@ router.push("/dashboard/project")
                       )}
                     />
                       </div>
-                      <div className="grid gap-3">
-                      <FormField
-                      control={form.control}
-                      name="overview"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Overview</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="Project Overview" {...field} />
-                          </FormControl>
-
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                      
-                      </div>
+                    
                       <div className="grid gap-3">
                         <Label htmlFor="description">Description</Label>
                         <Card>
@@ -241,176 +195,8 @@ router.push("/dashboard/project")
                     </div>
                   </CardContent>
                 </Card>
-                {/* <Card x-chunk="dashboard-07-chunk-1">
-                  <CardHeader>
-                    <CardTitle>Stock</CardTitle>
-                    <CardDescription>
-                      Lipsum dolor sit amet, consectetur adipiscing elit
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead className="w-[100px]">SKU</TableHead>
-                          <TableHead>Stock</TableHead>
-                          <TableHead>Price</TableHead>
-                          <TableHead className="w-[100px]">Size</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell className="font-semibold">
-                            GGPC-001
-                          </TableCell>
-                          <TableCell>
-                            <Label htmlFor="stock-1" className="sr-only">
-                              Stock
-                            </Label>
-                            <Input
-                              id="stock-1"
-                              type="number"
-                              defaultValue="100"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Label htmlFor="price-1" className="sr-only">
-                              Price
-                            </Label>
-                            <Input
-                              id="price-1"
-                              type="number"
-                              defaultValue="99.99"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <ToggleGroup
-                              type="single"
-                              defaultValue="s"
-                              variant="outline"
-                            >
-                              <ToggleGroupItem value="s">S</ToggleGroupItem>
-                              <ToggleGroupItem value="m">M</ToggleGroupItem>
-                              <ToggleGroupItem value="l">L</ToggleGroupItem>
-                            </ToggleGroup>
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell className="font-semibold">
-                            GGPC-002
-                          </TableCell>
-                          <TableCell>
-                            <Label htmlFor="stock-2" className="sr-only">
-                              Stock
-                            </Label>
-                            <Input
-                              id="stock-2"
-                              type="number"
-                              defaultValue="143"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Label htmlFor="price-2" className="sr-only">
-                              Price
-                            </Label>
-                            <Input
-                              id="price-2"
-                              type="number"
-                              defaultValue="99.99"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <ToggleGroup
-                              type="single"
-                              defaultValue="m"
-                              variant="outline"
-                            >
-                              <ToggleGroupItem value="s">S</ToggleGroupItem>
-                              <ToggleGroupItem value="m">M</ToggleGroupItem>
-                              <ToggleGroupItem value="l">L</ToggleGroupItem>
-                            </ToggleGroup>
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell className="font-semibold">
-                            GGPC-003
-                          </TableCell>
-                          <TableCell>
-                            <Label htmlFor="stock-3" className="sr-only">
-                              Stock
-                            </Label>
-                            <Input
-                              id="stock-3"
-                              type="number"
-                              defaultValue="32"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Label htmlFor="price-3" className="sr-only">
-                              Stock
-                            </Label>
-                            <Input
-                              id="price-3"
-                              type="number"
-                              defaultValue="99.99"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <ToggleGroup
-                              type="single"
-                              defaultValue="s"
-                              variant="outline"
-                            >
-                              <ToggleGroupItem value="s">S</ToggleGroupItem>
-                              <ToggleGroupItem value="m">M</ToggleGroupItem>
-                              <ToggleGroupItem value="l">L</ToggleGroupItem>
-                            </ToggleGroup>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </CardContent>
-                  <CardFooter className="justify-center border-t p-4">
-                    <Button size="sm" variant="ghost" className="gap-1">
-                      <PlusCircle className="h-3.5 w-3.5" />
-                      Add Variant
-                    </Button>
-                  </CardFooter>
-                </Card> */}
-                <Card x-chunk="dashboard-07-chunk-2">
-                  <CardHeader>
-                    <CardTitle>Project TechStack</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-6 sm:grid-cols-3">
-                      <div className="grid gap-3">
-                        
-                        <TechUsed tags={techUsed} setTags={setTechUsed}/>
-                      </div>
-
-                      {/* <div className="grid gap-3">
-                        <Label htmlFor="subcategory">
-                          Subcategory (optional)
-                        </Label>
-                        <Select>
-                          <SelectTrigger
-                            id="subcategory"
-                            aria-label="Select subcategory"
-                          >
-                            <SelectValue placeholder="Select subcategory" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="t-shirts">T-Shirts</SelectItem>
-                            <SelectItem value="hoodies">Hoodies</SelectItem>
-                            <SelectItem value="sweatshirts">
-                              Sweatshirts
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div> */}
-                    </div>
-                  </CardContent>
-                </Card>
+                
+             
               </div>
               <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
                 <Card x-chunk="dashboard-07-chunk-3">
@@ -485,89 +271,8 @@ router.push("/dashboard/project")
                     </div>
                   </CardContent>
                 </Card>
-                <Card
-                  className="overflow-hidden" x-chunk="dashboard-07-chunk-4"
-                >
-                  <CardHeader>
-                    <CardTitle>Full Page Image</CardTitle>
-                    <CardDescription>
-                     Upload a ScreenShort of your website Home Section
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-2">
-                       <Image
-                        alt="Cover image"
-                        className="aspect-square w-full rounded-md object-cover"
-                        height="300"
-                        src={image2 ? URL.createObjectURL(image2): uploadImage2}
-                        
-                        width="300"
-                      />
-                      <div className="grid grid-cols-3 gap-2">
-                      
-                       <Label htmlFor="picture2"> <div  className="flex aspect-square w-full items-center cursor-pointer justify-center rounded-md border border-dashed">
-                          <Upload className="h-4 w-4 text-muted-foreground" />
-                          <span className="sr-only">Upload</span>
-                          
-                          <Input id='picture2' type='file' onChange={(e:any) =>setImage2(e.target.files[0])} className='hidden' />
-                        </div></Label>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card x-chunk="dashboard-07-chunk-5">
-                  <CardHeader>
-                    <CardTitle>Project Links</CardTitle>
-                    <CardDescription>
-                     Attach all links here.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                  <FormField
-                      control={form.control}
-                      name="liveLink"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Live Link</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Project Live Preview link" {...field} />
-                          </FormControl>
-
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  <FormField
-                      control={form.control}
-                      name="githubLink"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Github Link</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Project Github Preview link" {...field} />
-                          </FormControl>
-
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  <FormField
-                      control={form.control}
-                      name="videoLink"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Overview Video Link</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Project Youtube video link" {...field} />
-                          </FormControl>
-
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </CardContent>
-                </Card>
+              
+              
               </div>
             </div>
             <div className="flex items-center justify-center gap-2 md:hidden">

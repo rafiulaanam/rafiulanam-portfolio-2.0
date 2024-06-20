@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import authReducer from '../redux/features/auth/authSlice';
 import projectReducer from './features/project/projectSlice';
+import blogReducer from './features/blog/blogSlice';
 import paginationReducer from '../redux/features/pagination/paginationSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import { baseApi } from './api/baseApi';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
   auth: authReducer,
   project:projectReducer,
+  blog:blogReducer,
   pagination:paginationReducer,
 });
 

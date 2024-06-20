@@ -16,11 +16,11 @@ const BlogSchema = new Schema(
       trim: true,
     },
     Tags: {
-      type: String,
+      type: [String],
       required: [true, "Tags is required!"],
       trim: true,
     },
-    thumbnail: {
+    coverImage: {
       type: String,
       required: [true, "thumbnail is required!"],
       trim: true,

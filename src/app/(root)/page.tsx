@@ -7,6 +7,7 @@ import EducationHome from "@/components/EducationHome";
 import ExperienceHome from "@/components/ExperienceHome";
 import TechstackHome from "@/components/TechstackHome";
 import Link from "next/link";
+import BlogsHome from "@/components/BlogsHome";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <ExperienceHome />
       <ProjectHome />
       <EducationHome />
+      <BlogsHome/>
       <FAQ />
     </div>
   );

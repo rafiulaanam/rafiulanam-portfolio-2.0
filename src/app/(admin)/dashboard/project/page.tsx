@@ -44,10 +44,7 @@ import {
 } from "@/components/ui/tabs"
 import Link from "next/link";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useEffect } from "react";
-import { getProjectSuccess } from "@/redux/features/project/projectSlice";
 import { useDeleteProMutation, useGetProItemsQuery } from "@/redux/features/project/projectApi";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Loading from "@/components/Loading";
 
 
@@ -70,7 +67,7 @@ export default function Project() {
           >
             <div className="flex flex-col items-center gap-1 text-center">
               <h3 className="text-2xl font-bold tracking-tight">
-                You have no products
+              {isLoading ? <Loading loadingText="Loading"/> : "You have no Projects"}
               </h3>
               <p className="text-sm text-muted-foreground">
                 You can start selling as soon as you add a product.
