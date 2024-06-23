@@ -44,10 +44,14 @@ import { useToast } from "@/components/ui/use-toast"
 // import CustomEditor from '@/components/CustomEditor'
 import { uploadImage, uploadImage2 } from '@/assets'
 import dynamic from 'next/dynamic'
-import TechUsed, { Tag } from '@/components/TechUsed'
 import { CloudImage } from '@/components/CloudImage'
 import { useRouter } from 'next/navigation'
 import { useCreateProMutation } from '@/redux/features/project/projectApi'
+
+import { FRAMEWORKS } from '@/utils/techused'
+import { Framework } from '@/interface/techUsed'
+import { TechUsed } from '@/components/TechUsed'
+import { TechUsed2 } from '@/components/TechUsed2'
 const CustomEditor = dynamic(()=>import('@/components/CustomEditor'),{ssr:false})
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -74,7 +78,7 @@ export default function NewProject() {
   const router = useRouter()
   const { toast } = useToast()
   const [content,setContent] = useState('')
-  const [techUsed, setTechUsed] = useState<Tag[]>([]);
+  const [techUsed, setTechUsed] = React.useState<Framework[]>([FRAMEWORKS[0]]);
   const [image1, setImage1] =useState<File | null>(null);
   const [image2, setImage2] = useState<File | null>(null);
   
@@ -368,12 +372,12 @@ const img2 = await submitImage(image2)
                     <CardTitle>Project TechStack</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid gap-6 sm:grid-cols-3">
-                      <div className="grid gap-3">
+                    <div className="">
+                      <div className="">
                         
-                        <TechUsed tags={techUsed} setTags={setTechUsed}/>
+                        <TechUsed techUsed={techUsed} setTechUsed={setTechUsed}/>
                       </div>
-
+{/* <TechUsed2/> */}
                       {/* <div className="grid gap-3">
                         <Label htmlFor="subcategory">
                           Subcategory (optional)

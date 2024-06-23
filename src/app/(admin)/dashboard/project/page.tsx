@@ -70,11 +70,11 @@ export default function Project() {
               {isLoading ? <Loading loadingText="Loading"/> : "You have no Projects"}
               </h3>
               <p className="text-sm text-muted-foreground">
-                You can start selling as soon as you add a product.
+                You can start selling as soon as you add a Project.
               </p>
               <Link href="/dashboard/project/new">
               
-              <Button className="mt-4">Add Product</Button>
+              <Button className="mt-4">Add Project</Button>
               </Link>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function Project() {
                 <Button size="sm" className="h-8 gap-1">
                   <PlusCircle className="h-3.5 w-3.5" />
                   <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add Product
+                    Add Project
                   </span>
                 </Button>
                 </Link>

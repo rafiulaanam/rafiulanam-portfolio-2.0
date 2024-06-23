@@ -49,6 +49,7 @@ import { useRouter } from 'next/navigation'
 import { useGetProByIdQuery, useUpdateProMutation } from '@/redux/features/project/projectApi'
 import { useAppDispatch } from '@/redux/hooks'
 import Loading from '@/components/Loading'
+import { useGetBlogByIdQuery, useUpdateBlogMutation } from '@/redux/features/blog/blogApi'
 const CustomEditor = dynamic(()=>import('@/components/CustomEditor'),{ssr:false})
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -72,10 +73,10 @@ const formSchema = z.object({
 });
 
 export default function EditProduct({ params }: { params: { id: string } }) {
- const productId = params.id
-  const {data: reduxProject, isLoading}:any = useGetProByIdQuery(productId)
+ const {id }= params
+  const {data: reduxProject, isLoading}:any = useGetBlogByIdQuery(id)
   
-  const [updatePro,result] = useUpdateProMutation()
+  const [updateBlog, {data:result}] = useUpdateBlogMutation()
   const router = useRouter()
   const { toast } = useToast()
   const [content,setContent] = useState('')
@@ -133,16 +134,14 @@ const submitImage = async (file:any) =>{
 
 const img1 = await submitImage(image1)
 const img2 = await submitImage(image2)
-      const data = {
-        ...values,
-        description:content,
-        coverImage:img1,
-        fullPageImage:img2,
-        techUsed,
+const data = {
+  title:values?.title,
+  description:content,
+  coverImage:img1
 
-      }
+}
 
-      updatePro({id:productId,data})
+      updateBlog({id,data})
 
    
  

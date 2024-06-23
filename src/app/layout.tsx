@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/Theme/ThemeProvide";
 import { Toaster } from "@/components/ui/toaster";
 import StoreProvider from "@/components/Providers/StoreProvider";
 import AuthProvider from "@/components/Providers/AuthProvider";
+import Tawk from "@/components/Tawk";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
             <AuthProvider>
               {children}
               <Toaster />
+             <Tawk/>
             </AuthProvider>
           </StoreProvider>
         </ThemeProvider>

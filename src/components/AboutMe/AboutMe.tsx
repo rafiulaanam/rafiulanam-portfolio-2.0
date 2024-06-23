@@ -2,7 +2,6 @@
 import React from "react";
 import "./AboutMe.css"
 import Image from "next/image";
-import { Button } from "../ui/button";
 import Title from "../Title";
 import { anamHomeAbout } from "@/assets";
 
@@ -18,6 +17,7 @@ const AboutMe = () => {
               className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded  ring ring-primary ring-offset-base-100 ring-offset-2"
               src={anamHomeAbout} width={500} height={500}
             />
+          
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 className="text-white text-3xl title-font font-bold mb-1">
                 Hi, I am <span className="text-[#72E2AE]">Rafiul Anam</span>

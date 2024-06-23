@@ -87,7 +87,7 @@ export default function page() {
             <h1  className="uppercase">
               Certificates
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="w-full h-fit">
                 <Image
                   src="https://i.imgur.com/cAXmewy.jpeg"
@@ -98,6 +98,32 @@ export default function page() {
                   className="w-full h-full object-cover rounded-md"
                 />
                 <Link href="https://i.imgur.com/cAXmewy.jpeg" target="_blank">
+                  <Button variant="link">View details</Button>
+                </Link>
+              </div>
+              <div className="w-full h-fit">
+                <Image
+                  src="https://i.imgur.com/nyO8mv3.jpeg"
+                  alt="programming-hero"
+                  width={300}
+                  height={200}
+                  quality={100}
+                  className="w-full h-full object-cover rounded-md"
+                />
+                <Link href="https://i.imgur.com/nyO8mv3.jpeg" target="_blank">
+                  <Button variant="link">View details</Button>
+                </Link>
+              </div>
+              <div className="w-full h-fit">
+                <Image
+                  src="https://i.imgur.com/7wgLkqp.jpeg"
+                  alt="programming-hero"
+                  width={300}
+                  height={200}
+                  quality={100}
+                  className="w-full h-full object-cover rounded-md"
+                />
+                <Link href="https://i.imgur.com/7wgLkqp.jpeg" target="_blank">
                   <Button variant="link">View details</Button>
                 </Link>
               </div>
@@ -114,7 +140,7 @@ export default function page() {
               height={200}
               quality={100}
               className="w-full h-full object-cover rounded-3xl "
-              // style={{ filter: "drop-shadow(2px 2px 5px gray)" }}
+              style={{ filter: "drop-shadow(2px 2px 5px gray)" }}
             />
           </div>
           <Link href={"/contact"}>

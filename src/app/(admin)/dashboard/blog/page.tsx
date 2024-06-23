@@ -68,7 +68,7 @@ export default function Blog() {
                {isLoading ? <Loading loadingText="Loading"/> : "You have no Blogs"}
               </h3>
               <p className="text-sm text-muted-foreground">
-                You can start selling as soon as you add a product.
+                You can start selling as soon as you add a blog.
               </p>
               <Link href="/dashboard/project/new">
                 <Button className="mt-4">Add Blog</Button>
@@ -120,7 +120,7 @@ export default function Blog() {
                   <Button size="sm" className="h-8 gap-1">
                     <PlusCircle className="h-3.5 w-3.5" />
                     <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                      Add Product
+                      Add Blog
                     </span>
                   </Button>
                 </Link>

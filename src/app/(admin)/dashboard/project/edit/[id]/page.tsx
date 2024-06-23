@@ -72,10 +72,10 @@ const formSchema = z.object({
 });
 
 export default function EditProduct({ params }: { params: { id: string } }) {
- const productId = params.id
-  const {data: reduxProject, isLoading}:any = useGetProByIdQuery(productId)
+ const {id} = params
+  const {data: reduxProject, isLoading}:any = useGetProByIdQuery(id)
   
-  const [updatePro,result] = useUpdateProMutation()
+  const [updatePro,{data:result}] = useUpdateProMutation()
   const router = useRouter()
   const { toast } = useToast()
   const [content,setContent] = useState('')
@@ -142,7 +142,7 @@ const img2 = await submitImage(image2)
 
       }
 
-      updatePro({id:productId,data})
+      updatePro({id,data})
 
    
  

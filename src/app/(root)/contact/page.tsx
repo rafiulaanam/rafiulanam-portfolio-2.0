@@ -240,7 +240,7 @@ const formSchema = z.object({
         <span className="sr-only">Gmail</span>
       </Link>
       <Link
-        href="https://wa.link/yq0ng0" target="_blank"
+        href="https://wa.me/8801701916034?text=Hello%2C%20Thanks%20for%20messaging%20me.%20How%20can%20I%20help%20you%20as%20a%20Full-stack%20Web%20Developer" target="_blank"
         className="inline-flex items-center justify-center rounded-full bg-[#25D366] text-white w-10 h-10 transition-colors hover:bg-[#1da851]"
         prefetch={false}
       >
